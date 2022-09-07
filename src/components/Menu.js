@@ -19,12 +19,12 @@ function Menu() {
   return (
     <div className="justify-center text-center">
       <h1 className="text-3xl font-sans">Order Food Online</h1>
-      <div className="grid grid-cols-4 gap-8 my-7 mx-8 justify-center">
+      <div className="grid grid-cols-4 gap-4 my-7 mx-8 justify-center">
         {menu.map((item) => (
           <FoodCard
             id={item._id}
-            src={faker.image.food(500, 400, true)}
-            title={item.menuname}
+            src={faker.image.food(300, 250, true)}
+            title={faker.company.name()}
             description={item.description}
           />
         ))}
