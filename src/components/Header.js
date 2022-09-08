@@ -1,16 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Location from "./Location";
 import SearchComponent from "./Search";
 import Login from "./Login";
 import { Link } from "react-router-dom";
 
 function Header() {
-  let isLogin = false;
-
-  function login() {
-    console.log("login");
-    isLogin = true;
-  }
+  const [open, setOpen] = useState(false);
 
   return (
     <div>
@@ -27,7 +22,7 @@ function Header() {
         <Link to="/cart">
           <div
             className="ml-5 text-lg font-extralight font-sans inline"
-            onClick={login}
+            onClick={() => setOpen(true)}
           >
             Log in
           </div>
@@ -36,7 +31,9 @@ function Header() {
           </div>
         </Link>
       </div>
-      <div id="login">{isLogin && <Login />}</div>
+      <div id="login">
+        <Login trigger={open} />
+      </div>
     </div>
   );
 }

@@ -1,12 +1,16 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-export default function Login() {
+import { ImCross } from "react-icons/im";
+import { GrMail } from "react-icons/gr";
+import { FcGoogle } from "react-icons/fc";
+
+export default function Login(props) {
   const [open, setOpen] = useState(true);
 
   const cancelButtonRef = useRef(null);
 
-  return (
+  return props.trigger ? (
     <Transition.Root show={open} as={Fragment}>
       <Dialog
         as="div"
@@ -27,7 +31,7 @@ export default function Login() {
         </Transition.Child>
 
         <div className="fixed inset-0 z-10 overflow-y-auto">
-          <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+          <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0 ">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -37,42 +41,60 @@ export default function Login() {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-                <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+              <Dialog.Panel className="justify-center ">
+                <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4 justify-center rounded-md">
                   <div className="sm:flex sm:items-start">
-                    <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                      <Dialog.Title
-                        as="h3"
-                        className="text-lg font-medium leading-6 text-gray-900"
-                      >
-                        Deactivate account
-                      </Dialog.Title>
-                      <div className="mt-2">
-                        <p className="text-sm text-gray-500">
-                          Are you sure you want to deactivate your account? All
-                          of your data will be permanently removed. This action
-                          cannot be undone.
-                        </p>
+                    <div className="mt-3 text-center">
+                      <p className="text-2xl flex justify-between mb-10">
+                        Login{" "}
+                        <span
+                          onClick={() => {
+                            setOpen(false);
+                            props.setTrigger(false);
+                          }}
+                          ref={cancelButtonRef}
+                        >
+                          <ImCross className="inline text-xl" />
+                        </span>
+                      </p>
+
+                      <div className="my-2 flex flex-col">
+                        <div className="flex mb-2 items-center">
+                          <img
+                            src="https://b.zmtcdn.com/images/flags_z10/in.png?output-format=webp"
+                            className="h-5"
+                          />
+                          <span className="mx-2 text-xl">+91 </span>
+                          <input
+                            type="text"
+                            placeholder="Phone"
+                            className="inline text-xl p-1"
+                          ></input>
+                        </div>
+                        <button className="w-full bg-[#ef4f5f] text-[#fceaec] text-lg p-1 rounded-md my-2">
+                          Send One Time Password
+                        </button>
+                        <hr className="inline" />
+                        <div className="text-xl font-light m-2 inline">OR</div>
+                        <hr className="inline" />
+                        <button className="w-full border-2 bg-[#ffffff] text-xl p-1 rounded-md my-2 flex items-center justify-center">
+                          <GrMail className="inline text-[#ef4f5f] text-2xl mr-2" />{" "}
+                          Continue with Email
+                        </button>
+                        <button className="w-full border-2 bg-[#ffffff] text-xl p-1 rounded-md my-2 flex items-center justify-center">
+                          <FcGoogle className="inline text-2xl mr-2" /> Continue
+                          with Email
+                        </button>
+                        <hr></hr>
+                        <div className="text-md  m-2 inline">
+                          Don't have an account?{" "}
+                          <span className="text-[#ef4f5f]">
+                            Create an account
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                  <button
-                    type="button"
-                    className="inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
-                    onClick={() => setOpen(false)}
-                  >
-                    Deactivate
-                  </button>
-                  <button
-                    type="button"
-                    className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-                    onClick={() => setOpen(false)}
-                    ref={cancelButtonRef}
-                  >
-                    Cancel
-                  </button>
                 </div>
               </Dialog.Panel>
             </Transition.Child>
@@ -80,5 +102,7 @@ export default function Login() {
         </div>
       </Dialog>
     </Transition.Root>
+  ) : (
+    ""
   );
 }
