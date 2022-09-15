@@ -21,7 +21,7 @@ export default function SearchComponent() {
         <input
           type="text"
           placeholder="Search"
-          className="w-full py-3 pl-12 pr-40 text-gray-500 border rounded-md outline-none bg-gray-50 focus:bg-white focus:border-indigo-600"
+          className="py-3 pl-12 pr-80 text-gray-500 border rounded-md outline-none bg-gray-50 focus:bg-white focus:border-indigo-600"
         />
       </div>
     </form>

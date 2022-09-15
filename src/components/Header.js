@@ -34,25 +34,25 @@ function Header() {
   return (
     <div>
       <div className="header flex flex-row justify-center items-center">
-        <div className="leading-tight font-sans italic text-5xl mt-0 mb-2 font-bold mr-2">
-          zomato
-        </div>
+        <Link to="/">
+          <div className="leading-tight font-sans italic text-5xl mt-0 mb-2 font-bold mx-4">
+            zomato
+          </div>
+        </Link>
         <div>
           <SearchComponent />
         </div>
         <div>
           <Location />
         </div>
-        <Link to="/">
+        <Link to="">
           <div
-            className="ml-5 text-lg font-extralight font-sans inline"
+            className="mx-5 text-lg  font-sans inline"
             onClick={() => setOpen(true)}
           >
             Log in
           </div>
-          <div className="ml-5 text-lg font-extralight font-sans inline">
-            Sign up
-          </div>
+          <div className="mx-5 text-lg  font-sans inline">Sign up</div>
           {/* <div
             id="signInButton"
             className="ml-5 text-lg font-extralight font-sans inline"
